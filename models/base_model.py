@@ -19,11 +19,11 @@ class BaseModel:
             self.id = str(uuid4())
             self.created_at = datetime.now()
             self.updated_at = datetime.now()
-            storage.new(self.to_dict())
+            storage.new(self.__class__(**self.to_dict()))
 
     def __str__(self):
         name = self.__class__.__name__
-        return "[{}] ({}) {}".format(name, self.id, self.__dict__)
+        return "[{}] ({}) {}".format(name, self.id, self.to_dict())
 
     def save(self):
         self.updated_at = datetime.now()
@@ -34,6 +34,5 @@ class BaseModel:
         d["__class__"] = self.__class__.__name__
         d["created_at"] = d["created_at"].isoformat()
         d["updated_at"] = d["updated_at"].isoformat()
-        print(d)
         return d
 
