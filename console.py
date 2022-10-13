@@ -1,6 +1,12 @@
 #!/usr/bin/python3
 import cmd
 from models.base_model import BaseModel
+from models.user import User
+from models.place import Place
+from models.state import State
+from models.city import City
+from models.amenity import Amenity
+from models.review import Review
 from models import storage
 import json
 
@@ -25,7 +31,16 @@ class HBNBCommand(cmd.Cmd):
             self.file = None
 
     def do_create(self, arg):
-        m = {"BaseModel": BaseModel}
+        'Creates an empty instance of input class'
+        m = {
+            "BaseModel": BaseModel, 
+            "User": User,
+            "Place": Place,
+            "State": State,
+            "City": City,
+            "Amenity": Amenity,
+            "Review": Review
+        }
         if not arg:
             print("** class name missing **")
         elif arg not in m.keys():
@@ -36,6 +51,7 @@ class HBNBCommand(cmd.Cmd):
             print(new_obj.id)
 
     def do_show(self, arg):
+        'Shows existing instance of input class and id'
         objs = storage.all()
         classes = list(map(lambda x: x.split(".")[0], objs.keys()))
         args = parse(arg)
@@ -56,6 +72,7 @@ class HBNBCommand(cmd.Cmd):
                     print(objs[k])
 
     def do_destroy(self, arg):
+        'Deletes existing instance of input class and id'
         args = parse(arg)
         try:
             cls_name = args[0]
@@ -79,6 +96,7 @@ class HBNBCommand(cmd.Cmd):
                 storage.save()
 
     def do_all(self, arg):
+        'Displays all instances of input class'
         objs = dict(storage.all())
         classes = list(map(lambda x: x.split(".")[0], objs.keys()))
         class_exists = True
@@ -93,6 +111,7 @@ class HBNBCommand(cmd.Cmd):
                 print(value.__str__())
 
     def do_update(self, arg):
+        'Updates existing instance of input class and id with input value'
         objs = storage.all()
         classes = list(map(lambda x: x.split(".")[0], objs.keys()))
         args = parse(arg)
