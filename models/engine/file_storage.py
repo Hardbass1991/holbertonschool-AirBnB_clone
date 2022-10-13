@@ -1,6 +1,7 @@
 #!/usr/bin/python3
 import json
 import os.path
+from datetime import datetime
 
 
 class FileStorage:
@@ -11,15 +12,32 @@ class FileStorage:
         return self.__objects
 
     def new(self, obj):
-        self.__objects[obj["__class__"] + "." + obj["id"]] = obj
+        self.__objects[obj.__class__.__name__ + "." + obj.id] = obj
     def save(self):
         with open(self.__file_path, "w", encoding="utf-8") as f:
-            # print(self.__objects)
-            f.write(json.dumps(self.__objects, default=str))
+            objs = dict(self.__objects)
+            for k, v in objs.items():
+                objs[k] = objs[k].to_dict()
+            f.write(json.dumps(objs))
 
     def reload(self):
         if os.path.isfile(self.__file_path):
             with open(self.__file_path, "r", encoding="utf-8") as f:
-                if f:
-                    #print("a" + f.read() + "a")
-                    self.__objects.update(json.load(f))
+                a = f.read()
+                print("AAA")
+                print(a)
+                print(type(a))
+                print(len(a))
+                print("AAA")
+                if not a.isspace() and len(a) > 0:
+                    d = json.loads(a)
+                    print("DDD")
+                    print(type(d))
+                    print(d)
+            from models.base_model import BaseModel
+            from models.user import User
+            for k, v in d.items():
+                d[k] = eval(v["__class__"])(**v)
+            print("NEW DDD")
+            print(d)
+            self.__objects.update(d)
