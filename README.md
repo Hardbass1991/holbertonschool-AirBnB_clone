@@ -15,7 +15,8 @@ show [class] [id]
 
 #### Examples
 Let the following "__objects" attribute of a FileStorage instance:  
-__objs = {
+  
+__objects = {
 	"BaseModel.af9b4cbd-2ce1-4e6e-8259-f578097dd15f": {"id": "af9b4cbd-2ce1-4e6e-8259-f578097dd15f", "updated_at": "2017-09-28T21:11:12.971544", "created_at": "2017-09-28T21:11:12.971521", "__class__": "BaseModel"},  
 	"BaseModel.38a22b25-ae9c-4fa9-9f94-59b3eb51bfba": {"id": "38a22b25-ae9c-4fa9-9f94-59b3eb51bfba", "updated_at": "2017-09-28T21:11:13.753347", "created_at": "2017-09-28T21:11:13.753337", "__class__": "BaseModel"},  
 	"BaseModel.9bf17966-b092-4996-bd33-26a5353cccb4": {"id": "9bf17966-b092-4996-bd33-26a5353cccb4", "updated_at": "2017-09-28T21:11:14.963058", "created_at": "2017-09-28T21:11:14.963049", "__class__": "BaseModel"},  
@@ -27,7 +28,7 @@ __objs = {
 
 If we run ./console.py we get prompted for an input, like so:  
 
-(hbnb)  
+```(hbnb)```  
 
 If we punch in the following input:
 
