@@ -2,12 +2,13 @@
 from models.base_model import BaseModel
 from models import storage
 
+
 class City(BaseModel):
+    self.state_id = ""
+    self.name = ""
+
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
-        if not kwargs:
-            self.state_id = ""
-            self.name = ""
 
     def save(self):
         super().save()

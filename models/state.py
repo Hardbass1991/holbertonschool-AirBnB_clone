@@ -3,10 +3,10 @@ from models.base_model import BaseModel
 from models import storage
 
 class State(BaseModel):
+    name = ""
+
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
-        if not kwargs:
-            self.name = ""
 
     def save(self):
         super().save()

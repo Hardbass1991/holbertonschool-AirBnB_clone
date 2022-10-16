@@ -3,12 +3,12 @@ from models.base_model import BaseModel
 from models import storage
 
 class Review(BaseModel):
+    place_id = ""
+    user_id = ""
+    text = ""
+
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
-        if not kwargs:
-            self.place_id = ""
-            self.user_id = ""
-            self.text = ""
 
     def save(self):
         super().save()
