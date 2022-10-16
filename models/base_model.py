@@ -23,7 +23,9 @@ class BaseModel:
 
     def __str__(self):
         name = self.__class__.__name__
-        return "[{}] ({}) {}".format(name, self.id, self.to_dict())
+        d = dict(self.__dict__)
+        d["__class__"] = name
+        return "[{}] ({}) {}".format(name, self.id, d)
 
     def save(self):
         self.updated_at = datetime.now()

@@ -73,27 +73,25 @@ class HBNBCommand(cmd.Cmd):
 
     def do_destroy(self, arg):
         'Deletes existing instance of input class and id'
+        objs = storage.all()
+        classes = list(map(lambda x: x.split(".")[0], objs.keys()))
         args = parse(arg)
-        try:
-            cls_name = args[0]
-        except IndexError:
+        if len(args) == 0:
             print("** class name missing **")
-        if len(args) > 1:
-            try:
-                id = args[1]
-            except IndexError:
-                print("** instance id missing **")
-        if len(args) == 2:
-            objs = storage.all()
-            classes = list(map(lambda x: x.split(".")[0], objs.keys()))
-            k = cls_name + "." + id
+        else:
+            cls_name = args[0]
             if cls_name not in classes:
                 print("** class doesn't exist **")
-            elif k not in objs.keys():
-                print("** no instance found **")
+            elif len(args) == 1:
+                print("** instance id missing **")
             else:
-                del objs[k]
-                storage.save()
+                id = args[1]
+                k = cls_name + "." + id
+                if k not in objs.keys():
+                    print("** no instance found **")
+                else:
+                    del objs[k]
+                    storage.save()
 
     def do_all(self, arg):
         'Displays all instances of input class'
@@ -137,7 +135,7 @@ class HBNBCommand(cmd.Cmd):
                     else:
                         val = args[3]
                         # print("k: " + attr_name + ", v: " + val)
-                        objs[k][attr_name] = val
+                        objs[k].__dict__[attr_name] = val
                         # print(objs)
                         storage.save()
 
