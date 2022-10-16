@@ -1,4 +1,7 @@
 #!/usr/bin/python3
+"""Module that defines a console for manipulating 
+instances of imported classes
+"""
 import cmd
 from models.base_model import BaseModel
 from models.user import User
@@ -10,7 +13,9 @@ from models.review import Review
 from models import storage
 import json
 
+
 class HBNBCommand(cmd.Cmd):
+    """Console for manipulating objects"""
     prompt = '(hbnb) '
     file = None
 
