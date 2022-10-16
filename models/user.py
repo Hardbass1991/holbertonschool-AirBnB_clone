@@ -1,6 +1,7 @@
 #!/usr/bin/python3
 from models.base_model import BaseModel
 from models import storage
+from datetime import datetime
 
 class User(BaseModel):
     email = ""
@@ -12,7 +13,7 @@ class User(BaseModel):
         super().__init__(*args, **kwargs)
 
     def save(self):
-        super().save()
+        self.updated_at = datetime.now()
         d = self.__dict__
         ds = storage.all()
         ds[self.__class__.__name__ + "." + self.id].__dict__.update(d)

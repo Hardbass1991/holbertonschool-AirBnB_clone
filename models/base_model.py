@@ -7,6 +7,9 @@ from models import storage
 
 class BaseModel:
     def __init__(self, *args, **kwargs):
+        self.id = str(uuid4())
+        self.created_at = datetime.now()
+        self.updated_at = datetime.now()
         if kwargs:
             for k in kwargs.keys():
                 if k != "__class__":
@@ -15,11 +18,8 @@ class BaseModel:
                         self.__dict__[k] = datetime.strptime(kwargs[k], fmt)
                     else:
                         self.__dict__[k] = kwargs[k]
-        else:
-            self.id = str(uuid4())
-            self.created_at = datetime.now()
-            self.updated_at = datetime.now()
-            storage.new(self.__class__(**self.to_dict()))
+        
+        storage.new(self)
 
     def __str__(self):
         name = self.__class__.__name__
