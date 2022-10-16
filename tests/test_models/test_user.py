@@ -24,6 +24,14 @@ class TestBaseModel(unittest.TestCase):
 
     objs = storage.all()
 
+    def test_email(self):
+        a = "email"
+        self.assertEqual(self.kw[a], self.tmp.__dict__[a])
+
+    def test_extra(self):
+        a = "password"
+        self.assertEqual(self.kw[a], self.tmp.__dict__[a])
+
     def test_attributes(self):
         for i in self.kw.keys():
             self.assertEqual(self.kw[i], self.tmp.__dict__[i])
