@@ -1,6 +1,6 @@
 #!/usr/bin/python3
 import unittest
-from models.city import City
+from models.state import State
 from uuid import uuid4, UUID
 from datetime import datetime
 from models import storage
@@ -14,15 +14,11 @@ def is_valid_uuid(val):
 
 class TestBaseModel(unittest.TestCase):
     kw = {
-        "state_id": "BA",
-        "name": "Barcelona",
+        "name": "Rzeczpospolita",
     }
-    tmp = City(**kw)
+    tmp = State(**kw)
     tmp.save()
 
-    objs = storage.all()
-
     def test_attributes(self):
-        a = self.objs[self.tmp.__class__.__name__ + "." + self.tmp.id].to_dict()
         for i in self.kw.keys():
-            self.assertEqual(self.kw[i], a[i])
+            self.assertEqual(self.kw[i], self.tmp.__dict__[i])
