@@ -1,8 +1,12 @@
-This repository contains a simplified replica of the Airbnb website
+This repository contains a simplified replica of the Airbnb website  
+
+Python 3.8.10  
 
 ### Command interpreter  
 
 Tool that allows the manipulation (creation, modification, deletion, display) of instances of any of the classes defined in the folder "models".  
+
+It can be compiled by cloning this repository, allowing for execution of the file "console.py", and running "./console.py"  
 
 This tool accepts six commands: all, create, destroy, quit, update and show, each of which will have the following syntax:  
 
@@ -60,7 +64,7 @@ which will display something along the lines of
   
 We could also add new attributes to our instance, or modify existing ones, like so  
 
-```(hbnb) City 2bf3ebfd-a220-49ee-9ae6-b01c75f6f6a4 Marco Polo```  
+```(hbnb) update City 2bf3ebfd-a220-49ee-9ae6-b01c75f6f6a4 Marco Polo```  
 
 which creates the attribute "Marco" with the value "Polo"
 
@@ -68,7 +72,7 @@ Now let's take a final look at our instance before we delete it
 
 ```(hbnb) show City 2bf3ebfd-a220-49ee-9ae6-b01c75f6f6a4```  
 
-```[BaseModel] (2bf3ebfd-a220-49ee-9ae6-b01c75f6f6a4) {'id': '2bf3ebfd-a220-49ee-9ae6-b01c75f6f6a4', 'created_at': datetime.datetime(2017, 9, 28, 21, 11, 13, 753337), 'updated_at': datetime.datetime(2017, 9, 28, 21, 11, 13, 753347)}```  
+```[BaseModel] (2bf3ebfd-a220-49ee-9ae6-b01c75f6f6a4) {'id': '2bf3ebfd-a220-49ee-9ae6-b01c75f6f6a4', 'created_at': datetime.datetime(2017, 9, 28, 21, 11, 13, 753337), 'updated_at': datetime.datetime(2017, 9, 28, 21, 11, 15, 753347), 'Marco': 'Polo'}```  
 
 Now we can delete the instance we just created from our storage by writing the following   
 
@@ -79,3 +83,7 @@ If we use the command "all", our short-lived City instance will no longer be ava
 Finally, we can exit our command interpreter by using the quit command
 
 ```(hbnb) quit```  
+
+Tests can be run this way:  
+
+```python3 -m unittest discover tests```
