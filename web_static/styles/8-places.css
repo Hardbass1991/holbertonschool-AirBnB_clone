@@ -54,6 +54,8 @@
 .container section.places div article div.information {
 	margin-top: 25%;
 	display: flex;
+	border-top: 1px solid #CCCCCC;
+	border-bottom: 1px solid #CCCCCC;
 }
 
 .container section.places div article div.information div {
